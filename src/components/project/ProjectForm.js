@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 import Input from '../form/Input';
 import Select from '../form/Select';
@@ -11,18 +12,21 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
     const [categories, setCategories] = useState([])
     const [project, setProject] = useState(projectData || {})
 
+    // Receber cateogorias de projeto do Firebase
     useEffect(() => {
-        fetch("http://localhost:5000/categories", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
+        const fetchData = async () => {
+            try {
+                const db = getFirestore();
+                const categoriesCollection = collection(db, 'categories');
+                const categoriesSnapshot = await getDocs(categoriesCollection);
+                
+                const categoriesList = categoriesSnapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+                setCategories(categoriesList);
+            } catch (error) {
+                console.error(error);
             }
-        })
-    .then((resp) => resp.json())
-    .then((data) => {
-        setCategories(data)
-    })
-    .catch(err => console.log(err));
+        }
+        fetchData();
     }, []);
 
     const submit = (e) => {
