@@ -25,7 +25,6 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm start
-npm run backend
 ```
 O aplicativo estará disponível em http://localhost:3000.
 
