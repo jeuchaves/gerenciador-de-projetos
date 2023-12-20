@@ -16,6 +16,10 @@ Bem-vindo ao repositório do Gerenciador de Projetos! Este projeto é um aplicat
 - **React Router DOM:** Roteamento para facilitar a navegação entre páginas no aplicativo.
 - **Firebase:** Estamos agora completamente integrados ao Firebase, aproveitando suas funcionalidades como o Firestore para o banco de dados em tempo real, autenticação segura, hospedagem na web e outras ferramentas poderosas. Essa mudança permite uma gestão mais eficiente dos dados e uma experiência de usuário mais confiável.solução mais robusta.
 
+## Designs
+
+Os designs estão disponíveis no [Figma](https://www.figma.com/file/PmrtwIxrOKJRDsQur1XMua/Costs?type=design&node-id=0%3A1&mode=design&t=JTVYBsslLaKuKn7j-1).
+
 ## Pré-requisitos
 
 Certifique-se de ter o Node.js instalado para executar o projeto localmente.
@@ -34,6 +38,10 @@ O aplicativo estará disponível em http://localhost:3000.
 - **Implementação de Recursos Adicionais:** Adicionar funcionalidades extras para aprimorar a experiência do usuário.
 - **Melhorias na Interface:** Aprimorar o design e a usabilidade do aplicativo.
 - **Testes:** Implementar testes para garantir a robustez do código.
+
+## Design
+
+
 
 ## Contribuindo
 
