@@ -2,8 +2,8 @@ import styles from './Project.module.css';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { getFirestore, doc, getDoc, updateDoc, runTransaction } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 
 import Loading from '../layout/Loading';
 import Container from '../layout/Container';
@@ -126,21 +126,32 @@ function Project() {
 		addService();
 	}
 
-	function removeService(id, cost) {
+	function removeService(idService, cost) {
 		
-		const servicesUpdate = project.services.filter((service) => service.id !== id);
-		const projectUpdated = project;
+		const servicesUpdate = project.services.filter((service) => service.id !== idService);
+		const projectUpdated = {...project};
 		
-		// Atualiza o custo do projeto
-		projectUpdated.services = servicesUpdate;
-		projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
-
 		const updateService = async () => {
 			try {
-				const db = getFirestore();
-				const projectRef = doc(db, 'projects', projectUpdated.id);
 
-				await updateDoc(projectRef, projectUpdated);
+				const db = getFirestore();
+				const projectRef = doc(db, 'projects', id);
+
+				await runTransaction(db, async (transaction) => {
+					const projectSnapshot = await transaction.get(projectRef);
+
+					if(projectSnapshot.exists()) {
+						transaction.update(projectRef, {
+							services: servicesUpdate,
+							cost: parseFloat(projectUpdated.cost) - parseFloat(cost),
+						});
+					} else {
+						// Se o projeto não existe...
+						setMessage('Serviço não encontrado.');	
+						setType('error');
+						return;
+					}
+				});
 
 				setProject(projectUpdated);
 				setServices(servicesUpdate);	
@@ -197,24 +208,25 @@ function Project() {
 								)}
 							</div>
 						</div>
-						<h2>Serviços</h2>
-						<Container customClass="start">
-							{services.length > 0 ? (
-								services.map((service) => (
-									<ServiceCard 
-										id={service.id} 
-										name={service.name}
-										cost={service.cost}
-										description={service.description}
-										key={service.id}
-										handleRemove={removeService}
-									/>
-								))
-							) : (
-								<p>Não há serviços cadastrados!</p>
-							)}
-						</Container>
-
+						<div>
+							<h2>Serviços</h2>
+							<Container customClass="start">
+								{services.length > 0 ? (
+									services.map((service) => (
+										<ServiceCard 
+											id={service.id} 
+											name={service.name}
+											cost={service.cost}
+											description={service.description}
+											key={service.id}
+											handleRemove={removeService}
+										/>
+									))
+								) : (
+									<p>Não há serviços cadastrados!</p>
+								)}
+							</Container>
+						</div>
 					</Container>
 				</div>
 			) : (
