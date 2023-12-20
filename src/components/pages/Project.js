@@ -2,6 +2,7 @@ import styles from './Project.module.css';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { getFirestore, doc, getDoc, updateDoc, runTransaction } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 
 import Loading from '../layout/Loading';
@@ -23,17 +24,25 @@ function Project() {
 	const [type, setType] = useState();
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/projects/${id}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json'
+		const fetchProject = async () => {
+			try {
+				const db = getFirestore();
+				const projectRef = doc(db, 'projects', id);	
+
+				const projectDoc = await getDoc(projectRef);
+
+				if (projectDoc.exists()) {
+					const projectData = projectDoc.data();
+					setProject(projectData);
+					setServices(projectData.services);
+				} else {
+					console.log('Projeto não encontrado!');
+				}
+			} catch (error) {
+				console.error(error);
 			}
-		}).then(resp => resp.json())
-			.then((data) => {
-				setProject(data);
-				setServices(data.services);
-			})
-			.catch(err => console.log(err));
+		}
+		fetchProject();
 	}, [id]);
 
 	function editPost(project) {
@@ -50,22 +59,23 @@ function Project() {
 			return;
 		}
 
-		fetch(`http://localhost:5000/projects/${project.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(project)
-		})
-			.then(resp => resp.json())
-			.then((data) => {
-				setProject(data);
+		const updateProject = async () => {
+			try {
+				const db = getFirestore();
+				const projectRef = doc(db, 'projects', id);
+
+				await updateDoc(projectRef, project);
+
+				setProject(project);
+
 				setShowProjectForm(false);
-				// mensagem
 				setMessage('Projeto atualizado!');
 				setType('sucess');
-			})
-			.catch(err => console.log(err));
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		updateProject();
 	}
 
 	function toggleProjectForm() {
@@ -99,46 +109,59 @@ function Project() {
 		// Adiciona o custo do projeto
 		project.cost = newCost;
 
-		// Atualiza o projeto
-		fetch(`http://localhost:5000/projects/${project.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(project)
-		}).then(resp => resp.json())
-			.then((data) => {
-				// Exibir o serviço
-				setMessage('Serviço adicionado!');
+		const addService = async () => {
+			try {
+				const db = getFirestore();
+				const projectRef = doc(db, 'projects', id);
+
+				await updateDoc(projectRef, project);
+
+				setMessage('Serviço adicionado');
 				setType('sucess');
 				setShowServiceForm(false);
-			})
-			.catch(err => console.log(err));
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		addService();
 	}
 
-	function removeService(id, cost) {
+	function removeService(idService, cost) {
 		
-		const servicesUpdate = project.services.filter((service) => service.id !== id);
-		const projectUpdated = project;
+		const servicesUpdate = project.services.filter((service) => service.id !== idService);
+		const projectUpdated = {...project};
 		
-		// Atualiza o custo do projeto
-		projectUpdated.services = servicesUpdate;
-		projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+		const updateService = async () => {
+			try {
 
-		fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(projectUpdated)
-		}).then(resp => resp.json())
-		.then((data) => {
-			setProject(projectUpdated);
-			setServices(servicesUpdate);
-			setMessage('Serviço removido com sucesso')
-			setType('sucess');
-		})
-		.catch(err => console.log(err));
+				const db = getFirestore();
+				const projectRef = doc(db, 'projects', id);
+
+				await runTransaction(db, async (transaction) => {
+					const projectSnapshot = await transaction.get(projectRef);
+
+					if(projectSnapshot.exists()) {
+						transaction.update(projectRef, {
+							services: servicesUpdate,
+							cost: parseFloat(projectUpdated.cost) - parseFloat(cost),
+						});
+					} else {
+						// Se o projeto não existe...
+						setMessage('Serviço não encontrado.');	
+						setType('error');
+						return;
+					}
+				});
+
+				setProject(projectUpdated);
+				setServices(servicesUpdate);	
+				setMessage('Serviço removido com sucesso');	
+				setType('sucess');
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		updateService();
 	}
 
 	return (
@@ -185,24 +208,25 @@ function Project() {
 								)}
 							</div>
 						</div>
-						<h2>Serviços</h2>
-						<Container customClass="start">
-							{services.length > 0 ? (
-								services.map((service) => (
-									<ServiceCard 
-										id={service.id} 
-										name={service.name}
-										cost={service.cost}
-										description={service.description}
-										key={service.id}
-										handleRemove={removeService}
-									/>
-								))
-							) : (
-								<p>Não há serviços cadastrados!</p>
-							)}
-						</Container>
-
+						<div>
+							<h2>Serviços</h2>
+							<Container customClass="start">
+								{services.length > 0 ? (
+									services.map((service) => (
+										<ServiceCard 
+											id={service.id} 
+											name={service.name}
+											cost={service.cost}
+											description={service.description}
+											key={service.id}
+											handleRemove={removeService}
+										/>
+									))
+								) : (
+									<p>Não há serviços cadastrados!</p>
+								)}
+							</Container>
+						</div>
 					</Container>
 				</div>
 			) : (

@@ -3,6 +3,7 @@ import styles from './NewProject.module.css';
 import ProjectForm from '../project/ProjectForm';
 
 import { useNavigate } from 'react-router';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 function NewProject() {
 
@@ -14,23 +15,23 @@ function NewProject() {
         project.cost = 0;
         project.services = [];
 
-        fetch("http://localhost:5000/projects", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(project)
-        })
-        .then((resp) => resp.json())
-        .then((data) => {
-            // redirect
-            Navigate('/projects', {
-                state: {
-                    message: "Projeto criado com sucesso!"
-                }
-            });
-        })
-        .catch((err) => console.log(err));
+        const handleAddProject = async () => {
+            try {
+                const db = getFirestore();
+                const projectCollection = collection(db, 'projects');
+
+                await addDoc(projectCollection, project);
+                Navigate('/projects', {
+                    state: {
+                        message: 'Projeto criado com sucesso!'
+                    }
+                })
+            } catch(error) {
+                console.error(error);
+            }
+        }
+
+        handleAddProject();
     }
 
     return (

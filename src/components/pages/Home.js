@@ -3,6 +3,7 @@ import savings from '../../img/savings.svg';
 import LinkButton from '../layout/LinkButton';
 
 function Home() {
+
     return (
         <section className={styles.homeContainer}>
             <h1>Bem-vindo ao <span>Costs</span></h1>
