@@ -1,0 +1,38 @@
+.st_heading {
+    text-align: center;
+    position: relative;
+    margin-top: -5px;
+    margin-bottom: 41px;
+}
+
+.st_heading h4 {
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #fec544;
+    letter-spacing: 1px;
+}
+
+.st_heading h4::before {
+    content: "";
+    position: absolute;
+    background-color: #3f4551;
+    width: 170px;
+    height: 2px;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+.st_heading h4::after {
+    content: "";
+    position: absolute;
+    background-color: #fec544;
+    width: 70px;
+    height: 2px;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}

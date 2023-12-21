@@ -1,11 +1,38 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
 }
 
-html, body, #root {
-  background-color: #fff;
-  height: 100%;
+html {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #0A101E;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100%;
+  padding-inline: 16px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  color: #fdfeff;
+  padding: 0;
+  margin: 0 0 10px 0;
+  line-height: 1.2em;
+  font-weight: 700;
+}
+
+.st_height_b80 {
+  height: 80px;
+}
+
+.st_height_b25 {
+  height: 25px;
 }

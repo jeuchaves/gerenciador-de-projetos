@@ -1,29 +1,69 @@
-.homeContainer {
-    width: 100%;
+/*
+======================================================================
+                          SEÇÃO HERO
+======================================================================
+*/
+
+
+.st_hero {
+    height: 710px;
+    display: -webkit-box;
     display: flex;
-    flex-direction: column;
+    -webkit-box-align: center;
     align-items: center;
+    -webkit-box-pack: center;
     justify-content: center;
-    padding: 4em;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    background-color: #070D1B;
 }
 
-.homeContainer h1 {
-    font-size: 2.5em;
-    margin-bottom: .5em;
+.st_hero h3 {
+    font-size: 30px;
+    margin-top: -6px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    color: #fec544;
 }
 
-.homeContainer h1 span {
-    color: #ffbb33;
-    padding: 0 .2em;
-    background-color: #222;
+.st_hero h1 {
+    font-size: 120px;
+    margin-bottom: 24px;
+    font-weight: 900;
+    color: #fdfeff;
+    line-height: 1;
 }
 
-.homeContainer p {
-    margin-bottom: 1.5em;
-    color: #7b7b7b;
+.st_hero h2 {
+    font-size: 36px;
+    margin-bottom: 41px;
+    font-weight: 300;
+    color: #a9adb8;
 }
 
-.homeContainer img {
-    width: 350px;
-    margin: 2em 0;
+@media screen and (max-width: 575px) {
+    .st_hero {
+        height: 580px;
+    }
+
+    .st_hero h1 {
+        font-size: 90px;
+    }
+}
+
+/*
+======================================================================
+                          SEÇÃO SOBRE MIM
+======================================================================
+*/
+
+.st_sobre__image {
+    min-height: 550px;
+}
+
+.st_sobre__image img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

@@ -1,9 +1,17 @@
 .btn {
-    background-color: #222;
-    color: #fff;
-    padding: 0.5em 1em;
+    background-color: #fec544;
+    color: #070d1b;
+    padding: 0.72em 1.8em;
     text-decoration: none;
-    transition: 0.5s;
+    transition: all 0.4s ease;
+    font-size: 16px;
+    line-height: 1.5em;
+    font-weight: 500;
+    border-radius: 50px;
+    min-width: 170px;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
 }
 
 .btn:hover {
