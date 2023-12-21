@@ -1,18 +1,28 @@
 .formControl {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em;
+    margin-bottom: 30px;
 }
 
 .formControl label {
-    margin-bottom: .6em;
-    font-weight: bold;
+    display: none;
 }
 
 .formControl input {
-    padding: .7em;
-    border-radius: 0;
-    border: none;
+    display: block;
+    width: 100%;
+    color: #a9adb8;
+    padding: 12px 20px;
+    border: 1px solid #232935;
+    background-color: #101624;
+    height: 52px;
+    border-radius: 7px;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.formControl input:focus,
+.formControl input:focus-visible {
+    border-color: #fec544;
+    outline: 0;
 }
 
 .formControl input::placeholder {

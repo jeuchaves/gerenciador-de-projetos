@@ -1,0 +1,19 @@
+.st_contato h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: -6px;
+    margin-bottom: 22px;
+}
+
+.st_contato h4 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 5px;
+    color: #a9adb8;
+}
+
+.st_contato .social_icons {
+    display: flex;
+}

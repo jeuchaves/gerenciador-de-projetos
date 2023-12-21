@@ -1,0 +1,29 @@
+.st_sobre__image {
+    min-height: 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+}
+
+.st_sobre p {
+    margin-bottom: 18px;
+}
+
+.st_sobre ul {
+    list-style: none;
+}
+
+.st_sobre li {
+    margin-bottom: 14px;
+}
+
+.st_sobre li span:first-child {
+    display: inline-block;
+    width: 108px;
+    margin-right: -5px;
+}
+
+.st_sobre li span:last-child {
+    margin-left: 7px;
+}

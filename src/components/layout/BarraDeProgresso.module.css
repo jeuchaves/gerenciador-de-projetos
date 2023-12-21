@@ -1,0 +1,39 @@
+.barra {
+    margin-top: -5px;
+}
+
+.barra__header {
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+}
+
+.barra__header h3 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.barra__header span {
+    color: #fec544;
+    font-weight: 400;
+}
+
+.progresso {
+    width: 100%;
+    height: 2px;
+    background-color: #3f4551;
+}
+
+.progresso > div {
+    background-color: #fec544;
+    height: 2px;
+}

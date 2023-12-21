@@ -12,12 +12,10 @@ html {
 body {
   background-color: #0A101E;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-}
-
-.container {
-  width: 100%;
-  padding-inline: 16px;
-  margin: 0 auto;
+  color: #a9adb8;
+  font-size: 16px;
+  line-height: 1.6em;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,10 +27,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-.st_height_b80 {
-  height: 80px;
-}
-
-.st_height_b25 {
-  height: 25px;
+p {
+  margin-bottom: 23px;
 }

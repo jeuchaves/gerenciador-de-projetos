@@ -1,0 +1,36 @@
+.group_icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.group_icon .icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 0.5px solid #3f4551;
+    border-radius: 50%;
+    background-color: #070d1b;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.icon_content h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: -4px;
+    margin-bottom: 6px;
+}
