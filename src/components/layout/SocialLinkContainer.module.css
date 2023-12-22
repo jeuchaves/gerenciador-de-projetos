@@ -1,0 +1,24 @@
+.st_social_group {
+    background-color: #101624;
+    border: 1px solid #232935;
+    border-right: 0;
+    border-radius: 50px 0 0 50px;
+    height: 80px;
+    width: 448px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+    padding-left: 12px;
+    right: 100%;
+}
+
+.st_social_link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}

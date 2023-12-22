@@ -1,0 +1,156 @@
+/* 
+========================================================================================
+                                    Configurações Gerais
+========================================================================================
+*/
+
+h3 {
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: -6px;
+    margin-bottom: 22px;
+}
+
+/* 
+========================================================================================
+                                    Seção Hero
+========================================================================================
+*/
+
+.st_hero {
+    height: 710px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    background-color: #070D1B;
+}
+
+.st_hero h3 {
+    font-size: 30px;
+    margin-top: -6px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    color: #fec544;
+}
+
+.st_hero h1 {
+    font-size: 120px;
+    margin-bottom: 24px;
+    font-weight: 900;
+    color: #fdfeff;
+    line-height: 1;
+}
+
+.st_hero h2 {
+    font-size: 36px;
+    margin-bottom: 41px;
+    font-weight: 300;
+    color: #a9adb8;
+}
+
+.st_hero__image {
+    position: absolute;
+    right: 4%;
+    top: 0;
+    height: 100%;
+    width: 45%;
+    z-index: 11;
+    transform: translateX(65.9px);
+}
+
+.st_hero__image img {
+    visibility: visible;
+    animation-name: fadeInRight;
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(35px, 0, 0);
+        transform: translate3d(35px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .st_hero {
+        height: 580px;
+    }
+
+    .st_hero h1 {
+        font-size: 90px;
+    }
+}
+
+/* 
+========================================================================================
+                                    Seção Sobre mim
+========================================================================================
+*/
+
+.st_sobre__image {
+    min-height: 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px;
+}
+
+.st_sobre p {
+    margin-bottom: 18px;
+}
+
+.st_sobre ul {
+    list-style: none;
+}
+
+.st_sobre li {
+    margin-bottom: 14px;
+}
+
+.st_sobre li span:first-child {
+    display: inline-block;
+    width: 108px;
+    margin-right: -5px;
+}
+
+.st_sobre li span:last-child {
+    margin-left: 7px;
+}
+
+/* 
+========================================================================================
+                                    Seção Habilidades
+========================================================================================
+*/
+
+.st_habilidades h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+
+/* 
+========================================================================================
+                                    Seção Contato
+========================================================================================
+*/
+
+.social_icons {
+    display: flex;
+}

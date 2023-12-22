@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-html {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
 body {
   background-color: #0A101E;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -29,4 +24,10 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-bottom: 23px;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
 }
