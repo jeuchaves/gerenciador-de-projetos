@@ -12,6 +12,7 @@ import IconContent from '../layout/IconContent'
 
 import styles from './Home.module.css'
 import SocialLinkContainer from "../layout/SocialLinkContainer.js"
+import ParticlesEffect from "../layout/ParticlesEffect.js"
 
 function Home() {
 
@@ -39,6 +40,7 @@ function Home() {
                     <img src="https://placekitten.com/g/850/850" alt="" />
                     <SocialLinkContainer />
                 </div>
+                <ParticlesEffect />
             </section>
             <section className={styles.st_sobre}>
                 <Espacamento altura="80" />
